@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aethera Corporations</title>
+  <style>
+    /* ---- GENERAL STYLES ---- */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(120deg, #ff0000, #00ff00, #0000ff);
+      background-size: 600% 600%;
+      color: white;
+      animation: gradientBG 20s ease infinite;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes gradientBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(0,0,0,0.7);
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    header p {
+      font-size: 1.1rem;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .city-image {
+      display: block;
+      margin: 20px auto;
+      border-radius: 15px;
+      border: 3px solid white;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 15px #fff;
+    }
+
+    /* ---- FEATURE CARDS ---- */
+    .feature-card {
+      display: inline-block;
+      background-color: rgba(255,255,255,0.1);
+      color: white;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.1) rotate(-2deg);
+      background-color: rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px #00ff00, 0 0 30px #ff0000;
+    }
+
+    /* ---- QR CODES ---- */
+    #qr-codes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .qr-card {
+      background-color: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 150px;
+      cursor: pointer;
+      border: 2px solid #00ff00;
+    }
+
+    .qr-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00ff00, 0 0 30px #ff0000;
+    }
+
+    .qr-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.7);
+      margin-top: 30px;
+      box-shadow: 0 -5px 20px #0000ff;
+    }
+
+    /* ---- MODAL POPUP ---- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+      background-color: rgba(0,0,0,0.95);
+      margin: 15% auto;
+      padding: 20px;
+      border: 2px solid #00ff00;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+      color: #00ff00;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    .close {
+      color: #ff0000;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #00ff00;
+    }
+
+    @media screen and (max-width: 600px){
+      .feature-card { width: 80%; margin: 10px auto; }
+      .qr-card { width: 45%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Aethera Corporations</h1>
+    <p>Explore the Living Dome and Power Dome!</p>
+  </header>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <img src="https://via.placeholder.com/400x250.png?text=Aethera+City" alt="Aethera City" class="city-image">
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section id="features">
+    <h2>City Domes</h2>
+    <div class="feature-card" onclick="showFeature('Living Dome: Residential buildings, parks, playgrounds, and community spaces!')">Living Dome</div>
+    <div class="feature-card" onclick="showFeature('Power Dome: Solar panels, sustainable energy, and smart power management!')">Power Dome</div>
+  </section>
+
+  <!-- QR CODES -->
+  <section id="qr-section">
+    <h2>Scan to Explore Each Dome</h2>
+    <div id="qr-codes">
+      <div class="qr-card" onclick="openModal('Living Dome: This dome houses residential buildings, parks, playgrounds, and community areas for residents.')">
+        <p>Living Dome QR</p>
+        <img src="https://via.placeholder.com/150.png?text=Living+Dome+QR" alt="Living Dome QR">
+      </div>
+      <div class="qr-card" onclick="openModal('Power Dome: This dome generates sustainable energy using solar panels and smart systems.')">
+        <p>Power Dome QR</p>
+        <img src="https://via.placeholder.com/150.png?text=Power+Dome+QR" alt="Power Dome QR">
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Aethera Corporations | Interactive city experience</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Feature card alerts
+    function showFeature(message){
+      alert(message);
+    }
+
+    // Modal popup
+    function openModal(text){
+      document.getElementById('modal-text').innerText = text;
+      document.getElementById('myModal').style.display = "block";
+    }
+
+    function closeModal(){
+      document.getElementById('myModal').style.display = "none";
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event){
+      const modal = document.getElementById('myModal');
+      if(event.target == modal){
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
